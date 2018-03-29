@@ -1,4 +1,4 @@
-# dsMaster
+# dsStats
 This is the repository for the stats docker container. This container is designed to run on on each and every veneristDS device and publish os stats. 
 
 ## The Docker Image
