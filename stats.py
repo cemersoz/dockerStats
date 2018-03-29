@@ -6,7 +6,7 @@ cpu_5 = None
 
 def get_cpu_stats():
   global cpu_5, cpu_10, cpu_15
-  stats_file = open('/proc/stat','r')
+  stats_file = open('/os_proc/stat','r')
 
   cpus = dict()
   stats = dict()
@@ -47,7 +47,7 @@ def get_cpu_stats():
   return stats
 
 def get_mem_stats():
-  mem_file = open('/proc/meminfo', 'r')
+  mem_file = open('/os_proc/meminfo', 'r')
   mem = dict()
 
   for line in mem_file:

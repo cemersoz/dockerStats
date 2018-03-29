@@ -1,7 +1,7 @@
 all: build run
 
 build:
-	sudo docker build . -t ds-master
+	sudo docker build . -t ds-stats
 run:
-	sudo docker run -d -v /veneristDS/contents:/veneristDS/contents ds-master
+	sudo docker run -d -v /proc:/os_proc ds-stats
 
