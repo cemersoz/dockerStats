@@ -18,4 +18,5 @@ VOLUME /proc:/host-proc
 
 ADD main.py main.py
 ADD stats.py stats.py
+ADD device.py device.py
 CMD ["python3", "main.py"]

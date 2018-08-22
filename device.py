@@ -20,9 +20,8 @@ class Device(object):
     fPriv.close()
     fPub.close()
     sPub.close()
-    '''
-      Here we get the ID of this device, this should obviously be overwritten
-      in your specific implementation
+    ''' Here we get the ID of this device, this should obviously be overwritten
+        in your specific implementation
     '''
 
   def getID(self):
