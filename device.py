@@ -53,7 +53,7 @@ class Device(object):
   '''
   def encodeAsDevice(self, message):
     encrypted_message = self.privateKeyEncrypt(message)
-    return {'device_id': self.getId(),
+    return {'device_id': self.getID(),
             'timestamp': time.time(),
             'message': encrypted_message}
 
