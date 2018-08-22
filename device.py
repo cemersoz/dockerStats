@@ -28,10 +28,9 @@ class Device(object):
       self.publicKey = None
       self.serverPublicKey = None
 
-    ''' Here we get the ID of this device, this should obviously be overwritten
-        in your specific implementation
-    '''
-
+  ''' Here we get the ID of this device, this should obviously be overwritten
+      in your specific implementation
+  '''
   def getID(self):
     return 0
 

@@ -19,7 +19,7 @@ class Stats(Thread):
     self.cpu_15 = None
     
   def get_cpu_stats(self):
-    stats_file = open('/os_proc/stat','r')
+    stats_file = open('/host-proc/stat','r')
 
     cpus = dict()
     for line in stats_file:
@@ -54,7 +54,7 @@ class Stats(Thread):
     return cpus
 
   def get_mem_stats(self):
-    mem_file = open('/os_proc/meminfo', 'r')
+    mem_file = open('/host-proc/meminfo', 'r')
     mem = dict()
 
     for line in mem_file:
@@ -75,8 +75,8 @@ class Stats(Thread):
 
   def update_stats(self):
     with self._lock:
-      self.stats = {'mem': get_mem_stats(),
-                    'cpu': get_cpu_stats()}
+      self.stats = {'mem': self.get_mem_stats(),
+                    'cpu': self.get_cpu_stats()}
   def get_stats(self):
     with self._lock:
       return self.stats
