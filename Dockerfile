@@ -14,8 +14,6 @@ RUN apk add --update --no-cache python3 && \
 RUN pip3 install --upgrade pip
 RUN pip3 install --upgrade requests
 
-VOLUME /proc:/host-proc
-
 ADD main.py main.py
 ADD stats.py stats.py
 ADD device.py device.py
