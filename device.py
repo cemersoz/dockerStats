@@ -20,10 +20,10 @@ class Device(object):
     fPriv.close()
     fPub.close()
     sPub.close()
-    
-  ''' Here we get the ID of this device, this should obviously be overwritten
+    '''
+      Here we get the ID of this device, this should obviously be overwritten
       in your specific implementation
-  '''
+    '''
 
   def getID(self):
     return 0
@@ -87,8 +87,8 @@ class Device(object):
       @param message: encrypted message
       @return: decrypted message
   '''
-  def decodeAsDeviceFromServer(message):
+  def decodeAsDeviceFromServer(self, message):
     half_decrypted = self.decodeFromServer(message) #decoded by server public key
     if half_decrypted is None: return None
 
-    return decodeAsDevice(half_decrypted) #decoded as our private key
+    return self.decodeAsDevice(half_decrypted) #decoded as our private key

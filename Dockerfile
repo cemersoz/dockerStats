@@ -1,4 +1,4 @@
-from alpine:latest
+FROM alpine:latest
 
 RUN apk add --update --no-cache python3 && \
     find / -type d -name __pycache__ -exec rm -r {} +   && \
@@ -14,7 +14,8 @@ RUN apk add --update --no-cache python3 && \
 RUN pip3 install --upgrade pip
 RUN pip3 install --upgrade requests
 
+VOLUME /proc:/host-proc
+
 ADD main.py main.py
-ADD crypt.py crypt.py
 ADD stats.py stats.py
 CMD ["python3", "main.py"]
