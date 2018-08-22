@@ -28,10 +28,9 @@ class Device(object):
       self.publicKey = None
       self.serverPublicKey = None
 
-    ''' Here we get the ID of this device, this should obviously be overwritten
-        in your specific implementation
-    '''
-
+  ''' Here we get the ID of this device, this should obviously be overwritten
+      in your specific implementation
+  '''
   def getID(self):
     return 0
 
@@ -53,9 +52,10 @@ class Device(object):
   '''
   def encodeAsDevice(self, message):
     encrypted_message = self.privateKeyEncrypt(message)
-    return {'device_id': self.getId(),
-            'timestamp': time.time(),
-            'message': encrypted_message}
+    result = {'device_id': self.getID(),
+             'timestamp': time.time(),
+             'message': encrypted_message}
+    return result
 
   ''' Here we get a message that we assume has been encrypted with our public key
       to prevent other entities to decode the message and decode it with our private key.
