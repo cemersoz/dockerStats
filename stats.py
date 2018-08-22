@@ -17,7 +17,7 @@ class Stats(Thread):
     self.cpu_5 = None
     self.cpu_10 = None
     self.cpu_15 = None
-    
+
   def get_cpu_stats(self):
     stats_file = open('/host-proc/stat','r')
 
@@ -40,7 +40,7 @@ class Stats(Thread):
         cpu['total_idle'] = total_idle
         cpu['avg'] = 1 - total_idle / total
         if self.cpu_5:
-          self.cpu['5_avg'] = 1 - (total_idle - self.cpu_5[spl[0]]['total_idle']) / (total - self.cpu_5[spl[0]]['total'])
+          cpu['5_avg'] = 1 - (total_idle - self.cpu_5[spl[0]]['total_idle']) / (total - self.cpu_5[spl[0]]['total'])
         if self.cpu_10:
           cpu['10_avg'] = 1 - (total_idle - self.cpu_10[spl[0]]['total_idle']) / (total - self.cpu_10[spl[0]]['total'])
         if self.cpu_15:
