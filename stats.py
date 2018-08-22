@@ -8,10 +8,16 @@ cpu_5 = None
 class Stats(Thread):
  
   def __init__(self):
+    super().__init__()
     self.daemon = True
     self._lock = Lock()
 
     self.stats = {}
+
+    self.cpu_5 = None
+    self.cpu_10 = None
+    self.cpu_15 = None
+    
   def get_cpu_stats(self):
     stats_file = open('/os_proc/stat','r')
 
@@ -33,12 +39,12 @@ class Stats(Thread):
         cpu['total'] = total
         cpu['total_idle'] = total_idle
         cpu['avg'] = 1 - total_idle / total
-        if cpu_5:
-          cpu['5_avg'] = 1 - (total_idle - cpu_5[spl[0]]['total_idle']) / (total - cpu_5[spl[0]]['total'])
-        if cpu_10:
-          cpu['10_avg'] = 1 - (total_idle - cpu_10[spl[0]]['total_idle']) / (total - cpu_10[spl[0]]['total'])
-        if cpu_15:
-          cpu['15_avg'] = 1 - (total_idle - cpu_15[spl[0]]['total_idle']) / (total - cpu_15[spl[0]]['total'])
+        if self.cpu_5:
+          self.cpu['5_avg'] = 1 - (total_idle - self.cpu_5[spl[0]]['total_idle']) / (total - self.cpu_5[spl[0]]['total'])
+        if self.cpu_10:
+          cpu['10_avg'] = 1 - (total_idle - self.cpu_10[spl[0]]['total_idle']) / (total - self.cpu_10[spl[0]]['total'])
+        if self.cpu_15:
+          cpu['15_avg'] = 1 - (total_idle - self.cpu_15[spl[0]]['total_idle']) / (total - self.cpu_15[spl[0]]['total'])
         cpus[spl[0]] = cpu
       
     self.cpu_15 = cpu_10
