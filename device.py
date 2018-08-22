@@ -9,9 +9,7 @@ class Device(object):
                      publicKeyLocation=None,
                      serverPublicKeyLocation=None):
 
-    if privateKeyLocation is not None and
-       publicKeyLocation is not None and
-       serverPublicKeyLocation is not None:
+    if privateKeyLocation is not None and publicKeyLocation is not None and serverPublicKeyLocation is not None:
       fPriv = open(privateKeyLocation, 'r')
       fPub = open(publicKeyLocation, 'r')
       sPub = open(serverPublicKeyLocation, 'r')
