@@ -1,17 +1,20 @@
-import stats, crypt
+from device import Device
+from stats import Stats
+
 import requests, time, json, logging
 
-device_id = 1
 logger = logging.getLogger(__name__)
+
+my_device = Device()
+stats = Stats()
 def post_stats():
-  stts = stats.get_stats()
-  dat = {'device_id': device_id, 'stats': stts, 'timestamp':time.time()}
-  data = crypt.encode_for_server(json.dumps(dat))
+  current_stats = stats.get_current_stats()
+  data = my_device.encodeAsDevice(current_stats)
   requests.post("http://ds.vnr.is:2425/check_config", data=data)
 
 while True:
   try:
     post_stats()
   except Exception as e:
-    logger.info("error connecting to server")
+    logger.info("Error connecting to server: {0}\n waitng 5 seconds".format(e))
   time.sleep(5)
