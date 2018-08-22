@@ -23,7 +23,7 @@ class Device(object):
       sPub.close()
 
     else:
-      logger.warn("No key files provide, we can't encrypt anything!")
+      logger.warn("No key files provided, we can't encrypt anything!")
       self.privateKey = None
       self.publicKey = None
       self.serverPublicKey = None
