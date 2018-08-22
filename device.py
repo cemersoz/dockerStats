@@ -5,21 +5,31 @@ logger = logging.getLogger(__name__)
 
 class Device(object):
 
-  def __init__(self, privateKeyLocation='~/.ssh/id_rsa',
-                     publicKeyLocation='~/.ssh/id_rsa.pub',
-                     serverPublicKeyLocation='~/.ssh/server_rsa.pub'):
+  def __init__(self, privateKeyLocation=None,
+                     publicKeyLocation=None,
+                     serverPublicKeyLocation=None):
 
-    fPriv = open(privateKeyLocation, 'r')
-    fPub = open(publicKeyLocation, 'r')
-    sPub = open(serverPublicKeyLocation, 'r')
+    if privateKeyLocation is not None and
+       publicKeyLocation is not None and
+       serverPublicKeyLocation is not None:
+      fPriv = open(privateKeyLocation, 'r')
+      fPub = open(publicKeyLocation, 'r')
+      sPub = open(serverPublicKeyLocation, 'r')
 
-    self.privateKey = fPriv.read()
-    self.publicKey = fPub.read()
-    self.serverPublicKey = sPub.read()
+      self.privateKey = fPriv.read()
+      self.publicKey = fPub.read()
+      self.serverPublicKey = sPub.read()
 
-    fPriv.close()
-    fPub.close()
-    sPub.close()
+      fPriv.close()
+      fPub.close()
+      sPub.close()
+
+    else:
+      logger.warn("No key files provide, we can't encrypt anything!")
+      self.privateKey = None
+      self.publicKey = None
+      self.serverPublicKey = None
+
     ''' Here we get the ID of this device, this should obviously be overwritten
         in your specific implementation
     '''
